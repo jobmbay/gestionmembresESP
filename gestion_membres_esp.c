@@ -25,13 +25,32 @@ typedef struct membre
 
  //cette fonction nous permet de creer une liste vide des membres
 Membres creerListeMembreLC(){
-	membrs l = (membre)malloc(sizeof(struct membre));
+	membre l = (membre)malloc(sizeof(struct membre));
 	l = NULL;
 	return l;
 }
 
-//insertion d'une classe de formation
-void inserrerClasseLC(struct membre m)
+//insertion d'une classe de formation pour un mebmre
+struct membre inserrerClasseLC(struct membre m, formation f)
+{
+	m.classe[m.nombreClasse]=f;
+	m.nombreClasse++;
+	return m;
+	//for(i=0;i<m.nombreClasse;i++)
+}
+
+//creer un nouveau membre
+
+struct membre creerMembreLC (char * numero, char * nom, char * prenom, char * adresse)
+{
+	struct membre m;
+	m.numero=numero;
+	m.nom=nom;
+	m.prenom=prenom;
+	m.adresse = adresse;
+	m.nombreClasse = 0;
+	return m;
+}
 
 //inserer un membre dans la liste
 liste insererMembreLC(membre l, struct membre m)
@@ -53,7 +72,8 @@ Membre ajouterMembreLC(Membres l,char * numero)
 
 int main(int argc, char const *argv[])
 {
-	FILE * auth = fopen(cheminauth, "a+");
-	FILE * membres = fopen(cheminmembres, "a+");
+	membre l = creerListeMembreLC(); 
+	//FILE * auth = fopen(cheminauth, "a+");
+	//FILE * membres = fopen(cheminmembres, "a+");
 	return 0;
 }
